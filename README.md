@@ -44,4 +44,5 @@ Sprint reports
 - Sprint 3:
 
 License:
+[LICENSE.txt](https://github.com/Teni17/Team8project-/files/15476089/LICENSE.txt)
 

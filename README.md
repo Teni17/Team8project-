@@ -75,6 +75,9 @@ First completed Issue was project setup. We set up the frontend and backend of o
 to a tutorial video on youtube. This was the video we used 
 https://www.youtube.com/watch?v=4nKWREmCvsE&t=432s
 
+Our Sprint Video
+https://youtu.be/V5MC05DesTI
+
 - Sprint 2:
 - Sprint 3:
 

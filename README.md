@@ -37,10 +37,8 @@ Contributing:
 4. Push to the branch: git push origin my-new-feature
 5. Submit a pull request :D
 
-Additional Documentation:
-Sprint reports
-- Sprint 1:
-Sprint x Report (8/26/21 - 9/24/2021)
+Additional Documentation - Sprint Reports
+- Sprint 1 Report (05/06/24 - 05/31/2024):
 
 What's New (User Facing)
 
@@ -59,27 +57,22 @@ Completed Issues/User Stories
 
 Here are links to the issues that we completed in this sprint:
 
-*
-URL of issue 1
+- URL of Issue 1:
 https://github.com/Teni17/Team8project-/issues/1
-*
-URL of issue 2
+- URL of Issue 2:
 https://github.com/Teni17/Team8project-/issues/2
-*
-URL of issue 3
+- URL of Issue 3:
 https://github.com/Teni17/Team8project-/issues/3
 
-We need to make smaller issues next time
+(We need to make smaller issues next time).
 
-First completed Issue was project setup. We set up the frontend and backend of our project by following along
-to a tutorial video on youtube. This was the video we used 
-https://www.youtube.com/watch?v=4nKWREmCvsE&t=432s
+First completed Issue was project setup. We set up the frontend and backend of our project by following along to a tutorial video on youtube.
+This was the video we used: https://www.youtube.com/watch?v=4nKWREmCvsE&t=432s
 
-Our Sprint Video
-https://youtu.be/V5MC05DesTI
+Sprint 1 Video: https://youtu.be/V5MC05DesTI
 
-- Sprint 2:
-- Sprint 3:
+- Sprint 2 Report (06/01/2024 - 06/28/2024):
+- Sprint 3 Report (06/29/2024 - 07/26/2024):
 
 License:
 [LICENSE.txt](https://github.com/Teni17/Team8project-/files/15476089/LICENSE.txt)

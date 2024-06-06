@@ -1,0 +1,1 @@
+The Learning-Outcomes folder contains the results of each member's individual work while learning the MERN tech stack.

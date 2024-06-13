@@ -16,7 +16,7 @@ app.use((req, res, next) => {
     next()
 })
 
-// routes (sets of predefined rules telling the router how to respond to a URL)
+// import router (routes are predefined rules telling the router how to respond to a URL)
 app.use('/api/workouts', workoutRoutes)
 
 // connect to database

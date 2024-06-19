@@ -1,4 +1,4 @@
-import mongose from "mongoose"
+import mongoose from "mongoose"
 
 
 const DonationSchema = mongoose.Schema({

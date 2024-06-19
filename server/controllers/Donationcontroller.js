@@ -46,4 +46,13 @@ export const updateDonation = async(req, res) =>{
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'No such Donation'})
     }
+
+    const donation = await Donation.findOneAndUpdate({_id:id},{
+        ...req.body
+    })
+
+    if(!donation){
+        return res.status(400).json({error: "No such Donation"})
+    }
+    res.status(200).json(donation)
 }

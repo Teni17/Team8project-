@@ -7,15 +7,14 @@ const DonationForm = () =>{
 
 
 
-    const handleSubmit = async(e) =>{
+    const handleSubmit = async(e) =>
+    {
         e.preventDefault()
 
-        const post = {title, entry:
+        const post = {
         food,
         date,
-    }}
-
-
+    }
     try{
         const response = await axios.get('/donations') //Need to fix this right here and still have more to add
 
@@ -28,11 +27,16 @@ const DonationForm = () =>{
         console.error('Error Axios fault, error')
         setError(error.respoine?.data?.error || 'Failed to create Donation')
     }
+
+}
+
+
+   
     
     return(
         <form className="create" onSubmit={handleSubmit}>
             <h3>Create New Donation</h3>
-            <label>Post</label>
+            <label>Donation</label>
             <input
             type="text"
             onChange={(e) => setFood(e.target.value)}
@@ -43,7 +47,7 @@ const DonationForm = () =>{
             <input
             type="text"
             onChange={(e) => setDate(e.target.value)}
-            value={make}
+            value={date}
             />
     
             <button>ADD</button>

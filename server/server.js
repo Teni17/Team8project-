@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv" // to use process.env values
 import donationRoutes from "../server/routes/Donationroutes.js" // get Donation router
+import userRoutes from "../server/routes/userRoutes.js" // get User router
 
 dotenv.config({ path: 'config.env'}) // load values from config.env into process.env
 
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // routes
 app.use('/donations', donationRoutes)
+app.use('/users', userRoutes)
 
 // connect to database with mongoose
 import mongoose from "mongoose"

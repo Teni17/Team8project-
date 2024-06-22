@@ -4,48 +4,108 @@
 
 /* Home Page */
 .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 100px;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-style: bold;
-    height: 100vh;
-  }
-  
-  .home h2 {
-    align-self: flex-start;
-    color: #555454;
-    margin: 0;
-    padding: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 40px;
-  }
-  
-  .home button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 20px 40px;
-    margin: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    width: 300px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home button:hover {
-    background-color: #0056b3;
-  }
-  
-  .home .button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-style: bold;
+  height: 100vh;
+}
+.home h2 {
+  align-self: flex-start;
+  color: #555454;
+  margin: 0;
+  padding: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 40px;
+}
+.home button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  margin: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 300px;
+  transition: background-color 0.3s ease;
+}
+.home button:hover {
+  background-color: #0056b3;
+}
+.home .button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+  /* Inventory Details */
+.inventory-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  flex: 1 0 21%; /* Make items take up 20% of the container width, with some margin */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+.inventory-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: #007bff;
+}
+.inventory-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Inventory Display */
+.inventory-display {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.inventory-display .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.inventory-display .header h2 {
+  margin: 0;
+  color: #555454;
+  font-size: 40px;
+}
+.inventory-display .header button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+.inventory-display .header button:hover {
+  background-color: #0056b3;
+}
+.inventory-display .inventory-container {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.inventory-display .inventory-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}

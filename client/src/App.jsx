@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages and components
 import Home from './pages/Home'
+import InventoryDisplay from './pages/InventoryDisplay';
 
 const App = () =>{
     return(
@@ -12,6 +13,10 @@ const App = () =>{
                         <Route
                             path="/home"
                             element={<Home />}
+                        />
+                        <Route
+                            path="/inventory-display"
+                            element={<InventoryDisplay />}
                         />
                     </Routes>
                 </div>

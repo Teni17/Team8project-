@@ -4,13 +4,14 @@ import axios from 'axios';
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/register', { username, password });
+            const response = await axios.post('http://localhost:5000/api/users/register', { username, password, email });
             setMessage(response.data.message);
         } catch (error) {
             setMessage(error.response.data.message);
@@ -32,6 +33,12 @@ const Register = () => {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <button type="submit">Register</button>
             </form>

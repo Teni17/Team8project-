@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // pages and components
 import Home from './pages/Home'
 import InventoryDisplay from './pages/InventoryDisplay';
+import GenerateReport from './pages/GenerateReport'
 
 const App = () =>{
     return(
@@ -17,6 +18,10 @@ const App = () =>{
                         <Route
                             path="/inventory-display"
                             element={<InventoryDisplay />}
+                        />
+                        <Route
+                            path="/generate-report"
+                            element={<GenerateReport />}
                         />
                     </Routes>
                 </div>

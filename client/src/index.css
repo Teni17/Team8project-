@@ -12,7 +12,7 @@
   font-style: bold;
   height: 100vh;
 }
-.home h2 {
+.home h4 {
   align-self: flex-start;
   color: #555454;
   margin: 0;
@@ -108,4 +108,69 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   margin-top: 40px;
+}
+
+/* Generate Report */
+.generate-report {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+}
+.generate-report .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.generate-report .header h2 {
+  margin: 0;
+  color: #555454;
+  font-size: 40px;
+}
+.generate-report .header button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+.generate-report .header button:hover {
+  background-color: #0056b3;
+}
+.generate-report .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.generate-report .content p {
+  font-size: 18px;
+  color: #555454;
+  margin-bottom: 20px;
+}
+.generate-report .download-link {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.generate-report .download-link:hover {
+  background-color: #0056b3;
+  color: #e0e0e0;
 }

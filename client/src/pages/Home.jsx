@@ -8,12 +8,16 @@ const Home = () => {
         navigate('/inventory-display')
     }
 
+    const handleGenerateReportClick = () => {
+        navigate('/generate-report')
+    }
+
     return (
         <div className="home">
-            <h2>Home</h2>
+            <h4>Home</h4>
             <button onClick={() => console.log('Add Donation clicked')}>Add Donation</button>
             <button onClick={handleViewInventoryClick}>View Inventory</button>
-            <button onClick={() => console.log('Generate Report clicked')}>Generate Report</button>
+            <button onClick={handleGenerateReportClick}>Generate Report</button>
         </div>
     );
 }

@@ -11,11 +11,15 @@ const Home = () => {
     const handleGenerateReportClick = () => {
         navigate('/generate-report')
     }
+    
+    const handleCreateDonationClick = () => {
+        navigate('/DonationForm')
+    }
 
     return (
         <div className="home">
             <h4>Home</h4>
-            <button onClick={() => console.log('Add Donation clicked')}>Add Donation</button>
+            <button onClick={(handleCreateDonationClick)}>Add Donation</button>
             <button onClick={handleViewInventoryClick}>View Inventory</button>
             <button onClick={handleGenerateReportClick}>Generate Report</button>
         </div>

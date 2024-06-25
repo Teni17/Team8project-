@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import InventoryDisplay from './pages/InventoryDisplay';
 import GenerateReport from './pages/GenerateReport'
+import Donation from './components/Donations.jsx'
 
 const App = () =>{
     return(
@@ -23,6 +24,9 @@ const App = () =>{
                             path="/generate-report"
                             element={<GenerateReport />}
                         />
+                        <Route 
+                            path="/DonationForm" 
+                            element={<Donation />} />
                     </Routes>
                 </div>
             </BrowserRouter>

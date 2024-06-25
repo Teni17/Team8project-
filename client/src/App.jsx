@@ -7,7 +7,7 @@ const App = () =>{
     return(
         <div className="w-full p-6">
             <Routes>
-                <Route path="/" element={<Donation />} />
+                <Route path="/DonationForm" element={<Donation />} />
             </Routes>
             <Outlet/>
         </div>

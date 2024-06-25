@@ -3,7 +3,7 @@ import { createDonation, getDonations, deleteDonation, updateDonation } from "/U
 
 const router = express.Router()
 
-router.post("/", createDonation)
+router.post("/DonationForm", createDonation)
 
 router.get("/",getDonations)
 

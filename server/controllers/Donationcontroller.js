@@ -25,7 +25,7 @@ export const createDonation = async(req, res) =>{
 
 //delete Donation
 export const deleteDonation = async(req, res) =>{
-    const { id } = req.parms
+    const { id } = req.params
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'No such Donation'})
@@ -41,7 +41,7 @@ export const deleteDonation = async(req, res) =>{
 
 //update a donation
 export const updateDonation = async(req, res) =>{
-    const { id } = req.parms
+    const { id } = req.params
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: 'No such Donation'})

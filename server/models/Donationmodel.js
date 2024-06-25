@@ -10,6 +10,10 @@ const DonationSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    quanity:{
+        type: Number,
+        required: true
+    },
 
 }, {timestamps: true})
 

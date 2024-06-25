@@ -1,8 +1,7 @@
-const nodemailer = require('nodemailer');
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
+import nodemailer from 'nodemailer';
+import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
     service: 'Gmail', // or use another email service
@@ -89,4 +88,4 @@ const verifyOneTimeCode = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, verifyOneTimeCode };
+export { registerUser, loginUser, verifyOneTimeCode };

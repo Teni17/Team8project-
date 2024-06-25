@@ -19,12 +19,13 @@ const DonationForm = () =>{
         quanity,
     }
     try{
-        const response = await axios.post('/donations', post) //Need to fix this right here and still have more to add
+        const response = await axios.post('/donations', donationList) //Need to fix this right here and still have more to add
 
         setFood('')
         setDate('')
         setQuanity('')
         setError(null)
+        setDonationList([{id: Date.now(), food:"" , quanity:"", daate: ""}])
         console.log('New Donation', response.data)
     }
     catch(error){
@@ -38,74 +39,65 @@ const DonationForm = () =>{
  
 
     const handleDonationAdd = () => {
-        setDonationList([...donationList,{ food: "", date: "", quanity: ""}])
+        setDonationList([...donationList,{ id: Date.now(), food: "", quanity: "", date: "",}])
     }
 
 
     const handleDonation = (e, index) =>{
-        const { setFood } = e.target
-        const { setDate } = e.target
-        const updatedDonations = donationList.map((post, i) =>
-        i === index ? { ... post, food: setFood, date: setDate } : post)
+        const { name ,value } = e.target
+        const updatedDonations = donationList.map((donation, i) =>
+        i === index ? { ... donation, [name]: value} : donation)
         setDonationList(updatedDonations)
     }
 
 
     return(
         <form className="create" onSubmit={handleSubmit}>
-            <h3>Create New Donation</h3>
-            <label>Donation</label>
-            <input
-            type="text"
-            onChange={(e) => setFood(e.target.value)}
-            value={food}
-            />
-    
-            <label> Exp Date</label>
-            <input
-            type="text"
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
-            />
-
-            <label>Quanity</label>
-            <input
-            type="text"
-            onChange={(e) => setQuanity(e.target.value)}
-            value={quanity}
-            />
-    
-            <button type="Submit">Submit</button>
+        <h1>Create New Donation</h1>
 
         {donationList.map((post, index) =>
-            <div key={index} className="donations">
-                <input
-                value={post.create}
-                onChange={(e) =>handleDonation(e, index)}
-                />
-        {donationList.length - 1 === index && donationList.length < 100 &&
-           <button
-           type="button"
-           className="add"
-           onClick={handleDonationAdd}
-           ></button>
-        }
+        (
+            <div key={post.id} className="donations">
+            <label>Donation</label>
+            <input
+            name="food"
+            value={post.food}
+            onChange={(e) => handleDonation(e , index)}
+            />
+            <label>Quanity</label>
+            <input
+            name="quanity"
+            value={post.quanity}
+            onChange={(e) => handleDonation(e, index)}
+            />
+            <label>Date</label>
+            <input
+            name="date"
+            value={post.date}
+            onChange={(e) => handleDonation(e, index)}
+            />
 
+            </div>
 
-        </div>
-
+        )
         
         )}
-        
-            {error && <div className="error"> {error}</div>}
+        <button type="button" onClick={handleDonationAdd}> 
+        Add
+        </button>
+            <button type="submit">Submit</button>
+
+
+
+            {error && <div className="error">{error}</div>}
         </form>
         
+       
         
     )
     
 
 }
-
 
 
 export default DonationForm

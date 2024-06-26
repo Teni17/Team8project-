@@ -3,9 +3,9 @@ import axios from "axios"
 const DonationForm = () =>{
     const [food, setFood] = useState('')
     const [date, setDate] = useState('')
-    const [quanity, setQuanity] = useState('')
+    const [quantity, setQuantity] = useState('')
     const [error, setError] = useState(null)
-    const [donationList, setDonationList] = useState([{food: "", date: "", quanity: ""}])
+    const [donationList, setDonationList] = useState([{food: "", date: "", quantity: ""}])
 
 
 
@@ -16,21 +16,21 @@ const DonationForm = () =>{
         const post = {
         food,
         date,
-        quanity,
+        quantity: parseInt(quantity),
     }
     try{
-        const response = await axios.post('/donations', donationList) //Need to fix this right here and still have more to add
+        const response = await axios.post('/DonationForm', donationList) //Need to fix this right here and still have more to add
 
         setFood('')
         setDate('')
-        setQuanity('')
+        setQuantity('')
         setError(null)
-        setDonationList([{id: Date.now(), food:"" , quanity:"", daate: ""}])
+        setDonationList([{id: Date.now(), food:"" , quantity:"", date: ""}])
         console.log('New Donation', response.data)
     }
     catch(error){
         console.error('Error Axios fault, error')
-        setError(error.respoine?.data?.error || 'Failed to create Donation')
+        setError(error.response?.data?.error || 'Failed to create Donation')
     }
 
 }
@@ -39,12 +39,12 @@ const DonationForm = () =>{
  
 
     const handleDonationAdd = () => {
-        setDonationList([...donationList,{ id: Date.now(), food: "", quanity: "", date: "",}])
+        setDonationList([...donationList,{ id: Date.now(), food: "", quantity: "", date: "",}])
     }
 
 
     const handleDonation = (e, index) =>{
-        const { name ,value } = e.target
+        const { name ,value, quantity } = e.target
         const updatedDonations = donationList.map((donation, i) =>
         i === index ? { ... donation, [name]: value} : donation)
         setDonationList(updatedDonations)
@@ -64,10 +64,10 @@ const DonationForm = () =>{
             value={post.food}
             onChange={(e) => handleDonation(e , index)}
             />
-            <label>Quanity</label>
+            <label>Quantity</label>
             <input
-            name="quanity"
-            value={post.quanity}
+            name="quantity"
+            value={post.quantity}
             onChange={(e) => handleDonation(e, index)}
             />
             <label>Date</label>

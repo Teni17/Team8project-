@@ -1,102 +1,68 @@
 import {useState} from "react";
-import axios from "axios"
+
 const DonationForm = () =>{
     const [food, setFood] = useState('')
     const [date, setDate] = useState('')
-    const [quanity, setQuanity] = useState('')
+    const [quantity, setQuantity] = useState('')
     const [error, setError] = useState(null)
-    const [donationList, setDonationList] = useState([{food: "", date: "", quanity: ""}])
 
 
-
-    const handleSubmit = async(e) =>
-    {
+    const handleSubmit = async(e) => {
         e.preventDefault()
 
-        const post = {
-        food,
-        date,
-        quanity,
-    }
-    try{
-        const response = await axios.post('/donations', donationList) //Need to fix this right here and still have more to add
+        const donation = { food, date, quantity }
 
-        setFood('')
-        setDate('')
-        setQuanity('')
-        setError(null)
-        setDonationList([{id: Date.now(), food:"" , quanity:"", daate: ""}])
-        console.log('New Donation', response.data)
-    }
-    catch(error){
-        console.error('Error Axios fault, error')
-        setError(error.respoine?.data?.error || 'Failed to create Donation')
-    }
+        const response = await fetch('http://localhost:5050/donations', {
+            method: 'POST',
+            body: JSON.stringify(donation),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const Json = await response.json
 
-}
-
-   
- 
-
-    const handleDonationAdd = () => {
-        setDonationList([...donationList,{ id: Date.now(), food: "", quanity: "", date: "",}])
-    }
-
-
-    const handleDonation = (e, index) =>{
-        const { name ,value } = e.target
-        const updatedDonations = donationList.map((donation, i) =>
-        i === index ? { ... donation, [name]: value} : donation)
-        setDonationList(updatedDonations)
+        if (!response.ok) {
+            setError(Json.error)
+        }
+        else {
+            setFood('')
+            setDate('')
+            setQuantity('')
+            setError(null)
+            console.log('New Donation', Json)
+        }
     }
 
 
     return(
         <form className="create" onSubmit={handleSubmit}>
-        <h1>Create New Donation</h1>
+            <h1>Create New Donation</h1>
 
-        {donationList.map((post, index) =>
-        (
-            <div key={post.id} className="donations">
-            <label>Donation</label>
+            <label>Donation:</label>
             <input
-            name="food"
-            value={post.food}
-            onChange={(e) => handleDonation(e , index)}
-            />
-            <label>Quanity</label>
-            <input
-            name="quanity"
-            value={post.quanity}
-            onChange={(e) => handleDonation(e, index)}
-            />
-            <label>Date</label>
-            <input
-            name="date"
-            value={post.date}
-            onChange={(e) => handleDonation(e, index)}
+                type="text"
+                value={food}
+                onChange={(e) => setFood(e.target.value)}
             />
 
-            </div>
+            <label>Date:</label>
+            <input
+                type="text"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+            />
 
-        )
-        
-        )}
-        <button type="button" onClick={handleDonationAdd}> 
-        Add
-        </button>
-            <button type="submit">Submit</button>
+            <label>Quantity:</label>
+            <input
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+            />
 
-
-
+            <button>Submit</button>
             {error && <div className="error">{error}</div>}
-        </form>
-        
-       
-        
+        </form>   
     )
-    
-
 }
 
 

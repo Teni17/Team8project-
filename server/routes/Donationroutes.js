@@ -5,7 +5,7 @@ import { createDonation, getDonations, deleteDonation, updateDonation } from "..
 const router = express.Router()
 
 // POST a new Donation
-router.post("/DonationForm", createDonation)
+router.post("/", createDonation)
 
 // GET all Donations
 router.get("/",getDonations)

@@ -8,11 +8,17 @@ const InventoryDisplay = () => {
 
     useEffect(() => {
         const fetchInventory = async () => {
-            const response = await fetch('http://localhost:5050/donations')
-            const json = await response.json()
+            try {
+                const response = await fetch('https://localhost:5050/donations')
+                const json = await response.json()
 
-            if (response.ok) {
-                setInventory(json)
+                if (response.ok) {
+                    setInventory(json)
+                } else {
+                    console.error('Failed to fetch inventory:', json)
+                }
+            } catch (error) {
+                console.error('Error fetching inventory:', error)
             }
         }
 

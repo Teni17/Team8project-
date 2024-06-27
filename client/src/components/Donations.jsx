@@ -12,7 +12,7 @@ const DonationForm = () =>{
 
         const donation = { food, date, quantity }
 
-        const response = await fetch('http://localhost:5050/donations', {
+        const response = await fetch('https://localhost:5050/donations', {
             method: 'POST',
             body: JSON.stringify(donation),
             headers: {

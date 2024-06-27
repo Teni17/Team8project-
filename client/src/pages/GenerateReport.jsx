@@ -9,7 +9,7 @@ const GenerateReport = () => {
         const fetchReport = async () => {
             try {
                 // get the report and set it to reportURL
-                const response = await fetch('http://localhost:5050/generate-report')
+                const response = await fetch('https://localhost:5050/generate-report')
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(new Blob([blob]))
                 setReportURL(url)

@@ -30,13 +30,24 @@ app.use('/donations', donationRoutes)
 app.use('/users', userRoutes)
 app.use('/generate-report', reportRoutes)
 
+// read certificate and private key
+import fs from "fs"
+import path from "path"
+const privateKey = fs.readFileSync(path.join('key.pm'), 'utf8')
+const certificate = fs.readFileSync(path.join('cert.pm'), 'utf8')
+const credentials = { key: privateKey, cert: certificate }
+
+// create HTTPS server
+import https from "https"
+const httpsServer = https.createServer(credentials, app)
+
 // connect to database with mongoose
 import mongoose from "mongoose"
 mongoose.connect(MONGODB_URI)
     .then(() => {
         // to start the express server after connected to db
-        app.listen(PORT, () => {
-            console.log('Server connected to database and listening on port', PORT);
+        httpsServer.listen(PORT, () => {
+            console.log('HTTPS Server connected to database and listening on port', PORT);
         });
     })
     .catch((error) => {

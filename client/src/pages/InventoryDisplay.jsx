@@ -37,8 +37,8 @@ const InventoryDisplay = () => {
             </div>
             <div className="inventory-container">
                 <div className="inventory-list">
-                    {inventory && inventory.map((food) => (
-                        <InventoryDetails key={food._id} food={food} />
+                    {inventory && inventory.map((donation) => (
+                        <InventoryDetails key={donation._id} donation={donation} />
                     ))}
                 </div>
             </div>

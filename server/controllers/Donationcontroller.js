@@ -14,11 +14,11 @@ export const getDonations = async(req, res) => {
 // create a new Donation
 export const createDonation = async(req, res) =>{
     // get new Donation info
-    const{food, date, quantity} = req.body
+    const{name, donor, date, quantity, category, comments} = req.body
 
     try{
         // create Donation
-        const donation = await Donation.create({food, date, quantity})
+        const donation = await Donation.create({name, donor, date, quantity, category, comments})
 
         // send response containing id of new Donation
         res.status(200).json({ donation: donation._id })

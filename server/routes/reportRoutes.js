@@ -31,7 +31,17 @@ router.get('/', async (req, res) => {
         doc.fontSize(20).text('Acme Food Bank Inventory Report', { align: 'center' })
         doc.moveDown()
         donations.forEach((donation, index) => {
-            doc.fontSize(12).text((index + 1) + '. ' + donation.food + ' - Expiration Date: ' + donation.date)
+            // NOTE: since the Schema change, older items will display undefined for name and/or quantity in the report
+            // some of the date attributes are strings, this converts them to a Date object if necessary
+            const expirationDate = typeof donation.date === 'string' ? new Date(donation.date) : donation.date
+
+            doc.fontSize(12).text((index + 1) + '. ' + donation.name + 
+                ' - Quantity: ' + donation.quantity +
+                ' - Expires: ' + expirationDate.toLocaleDateString('en-US', { // format Date object
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }))
             doc.moveDown()
         })
 

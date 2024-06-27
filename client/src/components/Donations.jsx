@@ -19,17 +19,28 @@ const DonationForm = () =>{
         quantity: parseInt(quantity),
     }
     try{
-        const response = await axios.post('/DonationForm', donationList) //Need to fix this right here and still have more to add
+        const response = await fetch('http://localhost:5050/donations', {
+            method: 'POST',
+            body: JSON.stringify({donationList}),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+        });
+
+    
+
+
 
         setFood('')
         setDate('')
         setQuantity('')
         setError(null)
-        setDonationList([{id: Date.now(), food:"" , quantity:"", date: ""}])
+        setDonationList([{id: Date.now(), food:"" , quantity:0, date: ""}])
         console.log('New Donation', response.data)
     }
     catch(error){
-        console.error('Error Axios fault, error')
+        console.error(error)
         setError(error.response?.data?.error || 'Failed to create Donation')
     }
 
@@ -46,7 +57,7 @@ const DonationForm = () =>{
     const handleDonation = (e, index) =>{
         const { name ,value, quantity } = e.target
         const updatedDonations = donationList.map((donation, i) =>
-        i === index ? { ... donation, [name]: value} : donation)
+        i === index ? { ... donation, [name]: value, [date]: value, [quantity]: Number(value)} : donation)
         setDonationList(updatedDonations)
     }
 
@@ -68,6 +79,7 @@ const DonationForm = () =>{
             <input
             name="quantity"
             value={post.quantity}
+            type="number"
             onChange={(e) => handleDonation(e, index)}
             />
             <label>Date</label>

@@ -1,14 +1,15 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import donationRoutes from "../server/routes/Donationroutes.js";
-import userRoutes from "../server/routes/userRoutes.js";
 import mongoose from "mongoose";
+import donationRoutes from "./routes/Donationroutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
-dotenv.config({ path: 'config.env' });
+// Load environment variables
+dotenv.config(); // Ensure the correct path to the .env file
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.ATLAS_URI;
+const MONGODB_URI = process.env.MONGO_URI;
 
 const app = express();
 
@@ -21,7 +22,7 @@ app.use('/api/users', userRoutes);
 mongoose.connect(MONGODB_URI)
     .then(() => {
         app.listen(PORT, () => {
-            console.log('Server connected to database and listening on port', PORT);
+            console.log(`Server connected to database and listening on port ${PORT}`);
         });
     })
     .catch((error) => {

@@ -3,9 +3,13 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+// Debug: Log environment variables
+console.log('Email:', process.env.EMAIL);
+console.log('Email Password:', process.env.EMAIL_PASSWORD);
+
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
-    service: 'Gmail', // or use another email service
+    service: 'Gmail', 
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASSWORD,
@@ -26,6 +30,7 @@ const registerUser = async (req, res) => {
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
+        console.error('Error in registerUser:', err);
         res.status(500).json({ message: 'Something went wrong' });
     }
 };
@@ -35,10 +40,16 @@ const loginUser = async (req, res) => {
 
     try {
         const user = await User.findOne({ username });
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) {
+            console.error('User not found');
+            return res.status(404).json({ message: 'User not found' });
+        }
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        if (!isPasswordCorrect) return res.status(400).json({ message: 'Invalid credentials' });
+        if (!isPasswordCorrect) {
+            console.error('Invalid credentials');
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
         // Generate a one-time code and send it to the user's email
         const oneTimeCode = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
@@ -88,6 +99,7 @@ const verifyOneTimeCode = async (req, res) => {
 
         res.status(200).json({ result: user, token });
     } catch (err) {
+        console.error('Error in verifyOneTimeCode:', err);
         res.status(500).json({ message: 'Something went wrong' });
     }
 };
@@ -99,6 +111,7 @@ const getCurrentUser = async (req, res) => {
 
         res.status(200).json(user);
     } catch (error) {
+        console.error('Error in getCurrentUser:', error);
         res.status(500).json({ message: 'Something went wrong' });
     }
 };

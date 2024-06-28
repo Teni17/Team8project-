@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [role, setRole] = useState('user'); 
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/Register', { username, password, email });
+            const response = await axios.post('http://localhost:5000/api/users/register', { username, password, email, role });
             setMessage(response.data.message);
+            if (response.status === 201) {
+                navigate('/login'); // Redirect to login page after successful registration
+            } else if (response.data.message === 'User already exists') {
+                setMessage(response.data.message);
+            }
         } catch (error) {
-            setMessage(error.response.data.message);
+            setMessage(error.response?.data?.message || 'Failed to register');
         }
     };
 
@@ -44,6 +52,17 @@ const Register = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Role</label>
+                        <select
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                        >
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
                     <button type="submit" className="w-full px-3 py-2 text-white bg-blue-600 rounded-md">
                         Register
                     </button>

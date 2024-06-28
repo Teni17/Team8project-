@@ -3,17 +3,19 @@ import InventoryDetails from '../components/InventoryDetails'
 import { useNavigate } from 'react-router-dom'
 
 const InventoryDisplay = () => {
-    const [inventory, setInventory] = useState(null)
+    const [donations, setDonations] = useState([])
+    const [filteredDonations, setFilteredDonations] = useState([])
     const navigate = useNavigate() // navigate can route the application to a specific URL
 
     useEffect(() => {
         const fetchInventory = async () => {
             try {
                 const response = await fetch('https://localhost:5050/donations')
-                const json = await response.json()
 
                 if (response.ok) {
-                    setInventory(json)
+                    const data = await response.json()
+                    setDonations(data)
+                    setFilteredDonations(data)
                 } else {
                     console.error('Failed to fetch inventory:', json)
                 }
@@ -28,16 +30,25 @@ const InventoryDisplay = () => {
     const handleHomeClick = () => {
         navigate('/home')
     }
+    const filterDonations = (category) =>{
+        const filtered = donations.filter(donation => donation.category === category)
+        setFilteredDonations(filtered)
+    }
+  
 
     return (
         <div className="inventory-display">
             <div className="header">
                 <h2>Inventory</h2>
                 <button onClick={handleHomeClick}>Home</button>
+                <button onClick={() => filterDonations('Food')}>Filter Food</button>
+                <button onClick={() => filterDonations('Hygiene')}>Filter Hygiene</button>
+                <button onClick={() => filterDonations('Miscellaneous')}>Filter Miscellaneous</button>
+                <button onClick={() => setFilteredDonations(donations)}>All</button>
             </div>
             <div className="inventory-container">
                 <div className="inventory-list">
-                    {inventory && inventory.map((donation) => (
+                    {filteredDonations.map((donation) => (
                         <InventoryDetails key={donation._id} donation={donation} />
                     ))}
                 </div>

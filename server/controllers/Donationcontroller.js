@@ -1,76 +1,31 @@
-import mongoose from "mongoose"
-import { Donation } from "../models/Donationmodel.js"
+import Donation from '../models/Donationmodel.js';
 
-// get all Donations
-export const getDonations = async(req, res) => {
-    // get Donations
-    const donations = await Donation.find({}).sort({createdAt: -1})
-
-    // send response containing all donations
-    res.status(200).json(donations)
-}
-
-
-// create a new Donation
-export const createDonation = async(req, res) =>{
-    // get new Donation info
-    const{food, date} = req.body
-
-    try{
-        // create Donation
-        const donation = await Donation.create({food, date})
-
-        // send response containing id of new Donation
-        res.status(200).json({ donation: donation._id })
-    }catch(error){
-        // send response containing error message
-        res.status(400).json({error: error.message})
+export const createDonation = async (req, res) => {
+    const { item, quantity, expirationDate } = req.body;
+    try {
+        const newDonation = new Donation({ item, quantity, expirationDate });
+        await newDonation.save();
+        res.status(201).json(newDonation);
+    } catch (error) {
+        res.status(409).json({ message: error.message });
     }
+};
 
-}
-
-// delete a Donation
-export const deleteDonation = async(req, res) =>{
-    // get Donation id
-    const { id } = req.params
-
-    // check valid id type
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: 'No such Donation'})
+export const deleteDonation = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await Donation.findByIdAndDelete(id);
+        res.status(204).json({ message: "Donation deleted successfully" });
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
+};
 
-    // delete Donation
-    const donation = await Donation.findOneAndDelete({_id: id})
-
-    // check valid Donation
-    if(!donation){
-        return res.status(404).json({error: 'No such Donation'})
+export const getDonations = async (req, res) => {
+    try {
+        const donations = await Donation.find();
+        res.status(200).json(donations);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
-
-    // send response containing deleted Donation
-    res.status(200).json(donation)
-}
-
-// update a donation
-export const updateDonation = async(req, res) =>{
-    // get Donation id
-    const { id } = req.params
-
-    // chack valid id type
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: 'No such Donation'})
-    }
-
-    // update Donation
-    const donation = await Donation.findOneAndUpdate({_id:id},{
-        ...req.body
-    })
-
-    // check valid Donation
-    if(!donation){
-        return res.status(400).json({error: "No such Donation"})
-    }
-
-    // send response containing updated Donation (without the update)
-    res.status(200).json(donation)
-}
+};

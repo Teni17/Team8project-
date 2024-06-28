@@ -1,20 +1,11 @@
-import express from "express"
-import { createDonation, getDonations, deleteDonation, updateDonation } from "../controllers/Donationcontroller.js"
+import express from 'express';
+import { createDonation, deleteDonation, getDonations } from '../controllers/Donationcontroller.js';
+import { auth, isAdmin } from '../middleware/auth.js';
 
-// create empty router
-const router = express.Router()
+const router = express.Router();
 
-// POST a new Donation
-router.post("/", createDonation)
+router.post('/', auth, createDonation);
+router.delete('/:id', auth, isAdmin, deleteDonation);
+router.get('/', auth, getDonations);
 
-// GET all Donations
-router.get("/",getDonations)
-
-// DELETE a Donation
-router.delete("/:id", deleteDonation)
-
-// UPDATE a Donation
-router.patch("/:id", updateDonation)
-
-// export router to be used in server.js
 export default router;

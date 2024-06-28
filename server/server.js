@@ -1,41 +1,29 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv" // to use process.env values
-import donationRoutes from "../server/routes/Donationroutes.js" // get Donation router
-import userRoutes from "../server/routes/userRoutes.js" // get User router
+import dotenv from "dotenv";
+import donationRoutes from "../server/routes/Donationroutes.js";
+import userRoutes from "../server/routes/userRoutes.js";
+import mongoose from "mongoose";
 
+dotenv.config({ path: 'config.env' });
 
-dotenv.config({ path: 'config.env'}) // load values from config.env into process.env
-
-
-// .env values
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.ATLAS_URI;
 
-// initialize express app
 const app = express();
 
-// to use the imported things
 app.use(cors());
 app.use(express.json());
 
-// routes
-app.use('/donations', donationRoutes)
-app.use('/users', userRoutes)
+app.use('/api/donations', donationRoutes);
+app.use('/api/users', userRoutes);
 
-// connect to database with mongoose
-import mongoose from "mongoose"
 mongoose.connect(MONGODB_URI)
     .then(() => {
-        // to start the express server after connected to db
         app.listen(PORT, () => {
             console.log('Server connected to database and listening on port', PORT);
         });
     })
     .catch((error) => {
-        console.log(error)
-    })
-
-
-
-
+        console.log(error);
+    });

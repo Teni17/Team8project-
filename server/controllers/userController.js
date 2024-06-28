@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
     service: 'Gmail', // or use another email service
@@ -55,12 +56,15 @@ const loginUser = async (req, res) => {
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
+                console.error('Error sending email:', error); // Log the specific error
                 return res.status(500).json({ message: 'Failed to send email' });
             } else {
+                console.log('Email sent: ' + info.response);
                 return res.status(200).json({ message: 'One-time code sent to your email', userId: user._id });
             }
         });
     } catch (err) {
+        console.error('Error in loginUser:', err); // Log any other errors
         res.status(500).json({ message: 'Something went wrong' });
     }
 };
@@ -88,4 +92,15 @@ const verifyOneTimeCode = async (req, res) => {
     }
 };
 
-export { registerUser, loginUser, verifyOneTimeCode };
+const getCurrentUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password -oneTimeCode -oneTimeCodeExpiry');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+};
+
+export { registerUser, loginUser, verifyOneTimeCode, getCurrentUser };

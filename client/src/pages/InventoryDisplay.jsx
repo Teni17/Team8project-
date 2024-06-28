@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const InventoryDisplay = () => {
     const [donations, setDonations] = useState([])
     const [filteredDonations, setFilteredDonations] = useState([])
+    const [search, setSearch] = useState('')
     const navigate = useNavigate() // navigate can route the application to a specific URL
 
     useEffect(() => {
@@ -34,6 +35,12 @@ const InventoryDisplay = () => {
         const filtered = donations.filter(donation => donation.category === category)
         setFilteredDonations(filtered)
     }
+    const filterNames = e =>{
+        const searchValue = e.target.value.toLowerCase()
+        setSearch(searchValue)
+        const filtered = donations.filter(donation => donation.name.toLowerCase().includes(searchValue))
+        setFilteredDonations(filtered)
+    }
   
 
     return (
@@ -47,6 +54,7 @@ const InventoryDisplay = () => {
                 <button onClick={() => setFilteredDonations(donations)}>All</button>
             </div>
             <div className="inventory-container">
+            <input type='text' placeholder='Search by Name' value={search} onChange={filterNames} />
                 <div className="inventory-list">
                     {filteredDonations.map((donation) => (
                         <InventoryDetails key={donation._id} donation={donation} />

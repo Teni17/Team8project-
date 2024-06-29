@@ -141,11 +141,12 @@ Sprint 1 Video: https://youtu.be/V5MC05DesTI
   -Make it look better
   -Deploy
   -Update any mistakes or update functionality
-
+  
+Sprint 2 video: https://youtu.be/SSYL9LWAKTI
   
 - Sprint 3 Report (06/29/2024 - 07/26/2024):
 
 License:
 [LICENSE.txt](https://github.com/Teni17/Team8project-/files/15476089/LICENSE.txt)
 
-Sprint 2 video: https://youtu.be/SSYL9LWAKTI
+

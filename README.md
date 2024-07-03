@@ -86,61 +86,77 @@ This was the video we used: https://www.youtube.com/watch?v=4nKWREmCvsE&t=432s
 
 Sprint 1 Video: https://youtu.be/V5MC05DesTI
 
-- Sprint 2 Report (06/01/2024 - 06/28/2024):
-  What's New (User Facing)
-  We added a View Inventory Page - which allows users to see all the donations made
-  On this Page we have a Home Button which takes you to the Home Page which doesn't have anything on it currently but in the future will have a login/register. We also have a filter which will filter the donations and we have a search Bar to search through the donations by donor name. We also added in the backend more attributes to the Donations schema. For Register and Login we added 2 Factor Authorization which will send you an email with a verification code. Which can be typed in. Lastly we added TLC encryption for added security.
+Sprint 2 Report (8/26/21 - 9/24/2021)
 
-  Unfinished Work (Developer Facing)
-  We have a couple issues surrounding 2 factor authorization which can be worked out. We also need to add more css styling to make our application look much better and usable. We also need to Merge Register/Login to Main.
+What's New (User Facing)
 
-  Completed Issues/User Stories
-  -https://github.com/Teni17/Team8project-/issues/24
-  -https://github.com/Teni17/Team8project-/issues/23
-  -https://github.com/Teni17/Team8project-/issues/21
-  -https://github.com/Teni17/Team8project-/issues/18
-  -https://github.com/Teni17/Team8project-/issues/16
-  -https://github.com/Teni17/Team8project-/issues/13
-  -https://github.com/Teni17/Team8project-/issues/12
-  -https://github.com/Teni17/Team8project-/issues/11
-  -https://github.com/Teni17/Team8project-/issues/10
-  -https://github.com/Teni17/Team8project-/issues/9
-  -https://github.com/Teni17/Team8project-/issues/8
+We added a Home Page
+A donation creation page
+A View donations page
+A Login/Register page
 
-  Incomplete Issues/User Stories
-  -https://github.com/Teni17/Team8project-/issues/25
-  Running into a couple of issues
-  -https://github.com/Teni17/Team8project-/issues/22
-  Haven't started
-  -https://github.com/Teni17/Team8project-/issues/19
-  A couple Issues almost done
-  -https://github.com/Teni17/Team8project-/issues/17
-  Haven't started
+Work Summary (Developer Facing)
 
-  Code Files for Review
-  -https://github.com/Teni17/Team8project-.git
-  -https://github.com/Teni17/Team8project-.git
-  -https://github.com/Teni17/Team8project-.git
-  -https://github.com/Teni17/Team8project-.git
-  -https://github.com/Teni17/Team8project-.git
-  -https://github.com/Teni17/Team8project-.git
+We added a View Inventory Page - which allows users to see all the donations made On this Page we have a Home Button which takes you to the Home Page which doesn't have anything on it currently but in the future will have a login/register. We also have a filter which will filter the donations and we have a search Bar to search through the donations by donor name. We also added in the backend more attributes to the Donations schema. For Register and Login we added 2 Factor Authorization which will send you an email with a verification code. Which can be typed in. Lastly we added TLC encryption for added security.
 
-  Retrospective Summary
-  
-  Here's What went well
-  -We added most all features we wanted to
-  -We got back on track
-  -We worked well as a team
+Unfinished Work
 
-  What we would like to improve
-  -CSS styling
-  -Deployment
-  -Fixing bugs
+We have a couple issues surrounding 2 factor authorization which can be worked out. We also need to add more css styling to make our application look much better and usable. We also need to Merge Register/Login to Main.
 
-  Changes
-  -Make it look better
-  -Deploy
-  -Update any mistakes or update functionality
+Completed Issues/User Stories
+
+Here are links to the issues that we completed in this sprint:
+
+-#24
+-#23
+-#21
+-#18
+-#16
+-#13
+-#12
+-#11
+-#10
+-#9
+-#8
+
+Incomplete Issues/User Stories
+
+-#25 Running into a couple of issues
+-#22 Haven't started
+-#19 A couple Issues almost done
+-#17 Haven't started
+
+Code Files for Review
+
+Please review the following code files, which were actively developed during this sprint, for quality:
+
+-https://github.com/Teni17/Team8project-.git
+-https://github.com/Teni17/Team8project-.git
+-https://github.com/Teni17/Team8project-.git
+-https://github.com/Teni17/Team8project-.git
+-https://github.com/Teni17/Team8project-.git
+-https://github.com/Teni17/Team8project-.git
+
+Retrospective Summary
+
+Here's what went well:
+
+-We added most all features we wanted to
+-We got back on track  
+-We worked well as a team
+
+Here's what we'd like to improve:
+
+-CSS styling
+-Deployment
+-Fixing bugs
+
+Here are changes we plan to implement in the next sprint:
+
+-Make it look better 
+-Deploy
+-Update any mistakes or update functionality
+
   
 Sprint 2 video: https://youtu.be/SSYL9LWAKTI
   

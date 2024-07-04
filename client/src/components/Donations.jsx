@@ -49,15 +49,19 @@ const DonationForm = () =>{
 
     return(
         <form className="create" onSubmit={handleSubmit}>
+            <div className="Header">
             <h1>Create New Donation</h1>
+            </div>
+            
 
+            <div className="Content">
             <label>Donation: </label>
             <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-            /><br />
+            />
 
             <label>Donor: </label>
             <input
@@ -65,7 +69,7 @@ const DonationForm = () =>{
                 value={donor}
                 onChange={(e) => setDonor(e.target.value)}
                 required
-            /><br />
+            />
 
             <label>Category: </label>
             <select
@@ -77,7 +81,7 @@ const DonationForm = () =>{
                 <option value="Food">Food</option>
                 <option value="Hygiene">Hygiene</option>
                 <option value="Miscellaneous">Miscellaneous</option>
-            </select><br />
+            </select>
 
             <label>Quantity: </label>
             <input
@@ -85,7 +89,7 @@ const DonationForm = () =>{
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 required
-            /><br />
+            />
 
             <label>Expiry Date: </label>
             <input
@@ -93,17 +97,20 @@ const DonationForm = () =>{
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
-            /><br />
+            />
 
             <label>Comments (optional): </label>
             <input
                 type="text"
                 value={comments}
                 onChange={(e) => setComments(e.target.value)}
-            /><br />
+            />
 
-            <button>Submit</button><br />
-            <button onClick={handleHomeClick}>Home</button>
+            </div>
+           <div className="Buttons">
+            <button>Submit</button>
+            <button ClassName="Home" onClick={handleHomeClick}>Home</button>
+           </div>
             {error && <div className="error">{error}</div>}
         </form>   
     )

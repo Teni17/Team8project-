@@ -109,7 +109,7 @@ const DonationForm = () =>{
             </div>
            <div className="Buttons">
             <button>Submit</button>
-            <button ClassName="Home" onClick={handleHomeClick}>Home</button>
+            <button className="Home" onClick={handleHomeClick}>Home</button>
            </div>
             {error && <div className="error">{error}</div>}
         </form>   

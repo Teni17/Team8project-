@@ -1,6 +1,7 @@
 
 Inventory Tracking System
 
+Link to our Doc: -https://docs.google.com/document/d/18Ym0kPv37M6L_EfKtj-DMB0tD3stvLo8h91iid5sFOM/edit?usp=sharing
 
 Project summary:
 

@@ -1,63 +1,123 @@
-import { User } from '../models/user.js';
+import nodemailer from 'nodemailer';
+import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-// register new User
-export const registerUser = async (req, res) => {
-    // get new User info
-    const { username, password } = req.body;
+dotenv.config(); // Ensure environment variables are loaded
+
+// Email transporter configuration
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+});
+
+const registerUser = async (req, res) => {
+    const { username, password, email, role } = req.body;
 
     try {
-        // check if username is unique
         const existingUser = await User.findOne({ username });
         if (existingUser) return res.status(400).json({ message: 'User already exists' });
 
-        // encrypt password
         const hashedPassword = await bcrypt.hash(password, 12);
-
-        // create new User
-        const newUser = new User({ username, password: hashedPassword });
+        const newUser = new User({ username, password: hashedPassword, email, role });
 
         await newUser.save();
 
-        // send response containing success message
-        res.status(200).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
-        // send response containing error message
+        console.error('Error in registerUser:', err);
         res.status(500).json({ message: 'Something went wrong' });
     }
 };
 
-// login existing User
-export const loginUser = async (req, res) => {
-    // get existing User info
+const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // check valid User
         const user = await User.findOne({ username });
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!user) {
+            console.error('User not found');
+            return res.status(404).json({ message: 'User not found' });
+        }
 
-        // decrypt and check valid password
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        if (!isPasswordCorrect) return res.status(400).json({ message: 'Invalid credentials' });
+        if (!isPasswordCorrect) {
+            console.error('Invalid credentials');
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
-        // get jsonwebtoken
-        const token = jwt.sign({ username: user.username, id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        if (user.role === 'admin') {
+            // Generate a one-time code and send it to the user's email
+            const oneTimeCode = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
+            user.oneTimeCode = oneTimeCode;
+            user.oneTimeCodeExpiry = Date.now() + 300000; // Code expires in 5 minutes
+            await user.save();
 
-        // send response containing user and token
-        res.status(200).json({ result: user, token });
+            // Send email with one-time code
+            const mailOptions = {
+                from: process.env.EMAIL,
+                to: user.email,
+                subject: 'Your One-Time Code for Login',
+                text: `Your one-time code is: ${oneTimeCode}`,
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending email:', error); // Log the specific error
+                    return res.status(500).json({ message: 'Failed to send email' });
+                } else {
+                    console.log('Email sent: ' + info.response);
+                    return res.status(200).json({ message: 'One-time code sent to your email', userId: user._id, role: user.role });
+                }
+            });
+        } else {
+            const token = jwt.sign({ username: user.username, id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.status(200).json({ result: user, token, role: user.role });
+        }
     } catch (err) {
-        // send response containing error message
-        res.status(500).json({ error: err.message });
+        console.error('Error in loginUser:', err); // Log any other errors
+        res.status(500).json({ message: 'Something went wrong' });
     }
 };
 
-// get all Users (for debugging purposes)
-export const getUsers = async(req, res) => {
-    // get Users
-    const users = await User.find({}).sort({createdAt: -1})
+const verifyOneTimeCode = async (req, res) => {
+    const { userId, oneTimeCode } = req.body;
 
-    // send response containing all Users
-    res.status(200).json(users)
-}
+    try {
+        const user = await User.findById(userId);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        if (user.oneTimeCode !== oneTimeCode || Date.now() > user.oneTimeCodeExpiry) {
+            return res.status(400).json({ message: 'Invalid or expired one-time code' });
+        }
+
+        user.oneTimeCode = null; // Clear the one-time code
+        user.oneTimeCodeExpiry = null;
+        await user.save();
+
+        const token = jwt.sign({ username: user.username, id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({ result: user, token });
+    } catch (err) {
+        console.error('Error in verifyOneTimeCode:', err);
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+};
+
+const getCurrentUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('-password -oneTimeCode -oneTimeCodeExpiry');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error in getCurrentUser:', error);
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+};
+
+export { registerUser, loginUser, verifyOneTimeCode, getCurrentUser };

@@ -1,17 +1,17 @@
 import express from 'express';
-import { registerUser, loginUser, getUsers } from '../controllers/userController.js';
+import { registerUser, loginUser, verifyOneTimeCode, getCurrentUser } from '../controllers/userController.js';
+import { auth, isAdmin } from '../middleware/auth.js';
 
-// create empty router
 const router = express.Router();
 
-// POST a new User
 router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.post('/verify-one-time-code', verifyOneTimeCode);
+router.get('/me', auth, getCurrentUser);
 
-// GET an existing User for login
-router.get('/login', loginUser);
+// Example protected route that only admins can access
+router.get('/admin-only-route', auth, isAdmin, (req, res) => {
+    res.status(200).json({ message: 'Welcome, admin!' });
+});
 
-// GET all Users (for debugging purposes)
-router.get('/', getUsers);
-
-// export router to be used in server.js
 export default router;

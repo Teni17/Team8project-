@@ -7,15 +7,12 @@ import reportRoutes from "../server/routes/reportRoutes.js" // get Report router
 
 dotenv.config({ path: 'config.env'}) // load values from config.env into process.env
 
-
-// .env values
 const PORT = process.env.PORT;
-const MONGODB_URI = process.env.ATLAS_URI;
+const MONGO_URI = process.env.ATLAS_URI;
 
-// initialize express app
+// Initialize express app
 const app = express();
 
-// to use the imported things
 app.use(cors());
 app.use(express.json());
 
@@ -41,9 +38,8 @@ const credentials = { key: privateKey, cert: certificate }
 import https from "https"
 const httpsServer = https.createServer(credentials, app)
 
-// connect to database with mongoose
-import mongoose from "mongoose"
-mongoose.connect(MONGODB_URI)
+// Connect to MongoDB
+mongoose.connect(MONGO_URI)
     .then(() => {
         // to start the express server after connected to db
         httpsServer.listen(PORT, () => {
@@ -51,9 +47,5 @@ mongoose.connect(MONGODB_URI)
         });
     })
     .catch((error) => {
-        console.log(error)
-    })
-
-
-
-
+        console.error('Database connection error:', error);
+    });

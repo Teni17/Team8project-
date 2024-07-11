@@ -8,7 +8,6 @@ import GenerateReport from './pages/GenerateReport'
 import Donation from './components/Donations.jsx'
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
-import AdminPanel from './components/AdminPanel.jsx';
 import VerifyCode from './components/VerifyCode.jsx';
 
 
@@ -61,7 +60,7 @@ const App = () =>{
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/verify-code/:userId" element={<VerifyCode />} />
-                        <Route path="/admin" element={role === 'admin' ? <AdminPanel /> : <Navigate to="/dashboard" />} />
+                        <Route path="/admin" element={role === 'admin' ? <Home /> : <Navigate to="/home" />} />
                     </Routes>
                 </div>
             </BrowserRouter>

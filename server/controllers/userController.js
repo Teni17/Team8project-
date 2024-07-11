@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-dotenv.config(); // Ensure environment variables are loaded
+dotenv.config({ path: '../server/config.env'}) // load values from config.env into process.env
 
 // Email transporter configuration
 const transporter = nodemailer.createTransport({

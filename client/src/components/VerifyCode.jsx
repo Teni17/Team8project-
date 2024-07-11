@@ -11,7 +11,7 @@ const VerifyCode = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/users/verify-one-time-code', {
+            const response = await axios.post('https://localhost:5050/users/verify-one-time-code', {
                 userId,
                 oneTimeCode,
             });

@@ -1,10 +1,16 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
+// pages and components
+import Home from './pages/Home'
+import InventoryDisplay from './pages/InventoryDisplay';
+import GenerateReport from './pages/GenerateReport'
+import Donation from './components/Donations.jsx'
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import AdminPanel from './components/AdminPanel.jsx';
-import Dashboard from './components/Dashboard.jsx';
 import VerifyCode from './components/VerifyCode.jsx';
+
 
 const decodeToken = (token) => {
     try {
@@ -20,7 +26,8 @@ const decodeToken = (token) => {
     }
 };
 
-const App = () => {
+
+const App = () =>{
     const [role, setRole] = useState(null);
 
     useEffect(() => {
@@ -31,19 +38,34 @@ const App = () => {
         }
     }, []);
 
-    return (
-        <Router>
-            <div>
-                <Routes>
-                    <Route path="/" element={<h1 className="text-4xl text-center mt-8">Welcome to the App</h1>} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/verify-code/:userId" element={<VerifyCode />} />
-                    <Route path="/admin" element={role === 'admin' ? <AdminPanel /> : <Navigate to="/dashboard" />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                </Routes>
-            </div>
-        </Router>
+    return(
+        <div className="App">
+            <BrowserRouter>
+                <div className="pages">
+                    <Routes>
+                        <Route
+                            path="/home"
+                            element={<Home />}
+                        />
+                        <Route
+                            path="/inventory-display"
+                            element={<InventoryDisplay />}
+                        />
+                        <Route
+                            path="/generate-report"
+                            element={<GenerateReport />}
+                        />
+                        <Route 
+                            path="/DonationForm" 
+                            element={<Donation />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/verify-code/:userId" element={<VerifyCode />} />
+                        <Route path="/admin" element={role === 'admin' ? <AdminPanel /> : <Navigate to="/dashboard" />} />
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        </div>
     );
 };
 

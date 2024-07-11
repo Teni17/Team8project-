@@ -1,18 +1,33 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose"
+
 
 const DonationSchema = mongoose.Schema({
-    // Name of the food in the donation
-    food: {
+    name:{
         type: String,
         required: true
     },
-    // Expiration date of the donation
-    date: {
-        type: Date,  // Changed to Date type for better date handling
+    donor:{
+        type: String,
         required: true
     },
-}, { timestamps: true });
+    date:{
+        type: Date,
+        required: true
+    },
+    quantity:{
+        type: Number,
+        required: true
+    },
+    category:{
+        type: String,
+        enum: ['Food', 'Hygiene', 'Miscellaneous'],
+        required: true
+    },
+    comments:{
+        type: String,
+        default: '' // comments are optional, so default to empty string
+    }
 
-const Donation = mongoose.model('Donation', DonationSchema);
+}, {timestamps: true})
 
-export default Donation;
+export const Donation = mongoose.model('Donation', DonationSchema)

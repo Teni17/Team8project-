@@ -95,4 +95,21 @@ describe("POST /donations", () =>{
             expect(response.statusCode).toBe(400)
         })
     })
+
+
+    //To View Inventory Test
+    describe("GET /donations", () =>{
+        //Should give back status code of 200
+        describe("Given a get request", () =>{
+            
+            test("Should give back 200", async () =>{
+    
+               
+                const saved = await request(app).get(`/donations`);
+                expect(saved.statusCode).toBe(200)
+                
+    
+            })
+        })
+    })
 })

@@ -5,6 +5,7 @@ import { Donation } from '../models/Donationmodel'
 
 import dotenv from 'dotenv'
 
+let deleteDonations = []
 
 beforeAll(async () => {
     const dbUri = process.env.TEST
@@ -14,12 +15,15 @@ beforeAll(async () => {
     await mongoose.createConnection(dbUri)
 })
 
-afterEach(async () =>{
-    await Donation.deleteMany({})
+afterEach(async () => {
+    await Donation.deleteMany({ _id: {$in: deleteDonations }})
+    deleteDonations = []
 })
 
 afterAll(async () =>{
+    
     await mongoose.connection.close()
+    
 })
 
 describe("POST /donations", () =>{
@@ -54,6 +58,8 @@ describe("POST /donations", () =>{
             expect(saved.category).toBe(donationData.category)
             expect(saved.comments).toBe(donationData.comments)
 
+            deleteDonations.push(saved._id)
+
         })
     
         // should respond with a 200 status code
@@ -61,13 +67,15 @@ describe("POST /donations", () =>{
             const donationData = {
                 name: "Cheerios",
                 donor: "Jeff",
-                date: "11/12/2015",
+                date: "11/12/2016",
                 quantity: 5,
                 category: "Food",
                 comments: "NA",
             }
             const response = await request(app).post("/donations").send(donationData)
+            const saved = await Donation.findById(response.body._id)
             expect(response.statusCode).toBe(200)
+            deleteDonations.push(saved._id)
         })
 
     })

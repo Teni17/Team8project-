@@ -21,7 +21,7 @@ export const createDonation = async(req, res) =>{
         const donation = await Donation.create({name, donor, date, quantity, category, comments})
 
         // send response containing id of new Donation
-        res.status(200).json({ donation: donation._id })
+        res.status(200).json(donation)
     }catch(error){
         // send response containing error message
         res.status(400).json({error: error.message})

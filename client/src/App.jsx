@@ -9,7 +9,7 @@ import Donation from './components/Donations.jsx'
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import VerifyCode from './components/VerifyCode.jsx';
-
+import Display from './pages/Display.jsx'
 
 const decodeToken = (token) => {
     try {
@@ -42,6 +42,10 @@ const App = () =>{
             <BrowserRouter>
                 <div className="pages">
                     <Routes>
+                        <Route
+                            path="/"
+                            element={<Display />}
+                        />
                         <Route
                             path="/home"
                             element={<Home />}

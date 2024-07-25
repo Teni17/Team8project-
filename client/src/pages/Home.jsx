@@ -1,8 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
-const Home = ({ role }) => {
+const Home = () => {
     const navigate = useNavigate() // navigate can route the application to a specific URL
+    const { role } = useContext(UserContext); // use context to get current user role
 
     const handleViewInventoryClick = () => {
         navigate('/inventory-display')
@@ -26,7 +28,7 @@ const Home = ({ role }) => {
             <button onClick={(handleCreateDonationClick)}>Add Donation</button>
             <button onClick={handleViewInventoryClick}>View Inventory</button>
             <button onClick={handleGenerateReportClick}>Generate Report</button>
-            {role === 'admin' && (
+            {role === 'admin' && ( // only display admin features if role is admin
                 <button onClick={handleManageInventoryClick}>Manage Inventory</button>
             )}
         </div>

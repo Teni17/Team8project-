@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext'
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const { setRoleAndToken } = useContext(UserContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +20,10 @@ const Login = () => {
             setMessage(response.data.message);
             if (response.status === 200) {
                 const { token, userId, role } = response.data;
-                localStorage.setItem('token', token);
+                // localStorage.setItem('token', token);
+                console.log(response.data)
+                console.log(token, userId, role)
+                if (token) setRoleAndToken(token) // use context if normal user
                 if (role === 'admin') {
                     navigate(`/verify-code/${userId}`);
                 } else {

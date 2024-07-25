@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 const VerifyCode = () => {
     const [oneTimeCode, setOneTimeCode] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
     const { userId } = useParams();
+    const { setRoleAndToken } = useContext(UserContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +20,8 @@ const VerifyCode = () => {
             setMessage(response.data.message);
             if (response.status === 200) {
                 const { token, result } = response.data;
-                localStorage.setItem('token', token);
+                // localStorage.setItem('token', token);
+                setRoleAndToken(token) // update context
                 navigate('/home');
             }
         } catch (error) {

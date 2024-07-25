@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from './contexts/UserContext.jsx';
 
 // pages and components
 import Home from './pages/Home'
@@ -12,31 +13,13 @@ import VerifyCode from './components/VerifyCode.jsx';
 import Display from './pages/Display.jsx';
 import ManageInventory from './pages/ManageInventory.jsx';
 
-const decodeToken = (token) => {
-    try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-        return JSON.parse(jsonPayload);
-    } catch (e) {
-        console.error('Invalid token:', e);
-        return null;
-    }
-};
-
 
 const App = () =>{
-    const [role, setRole] = useState(null);
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const decodedToken = decodeToken(token);
-            setRole(decodedToken?.role || 'user');
-        }
-    }, []);
+    const { role } = useContext(UserContext); // role of the currently logged in user is always known with context
+    
+    if (role === null) {
+        return <div>Loading...</div>; // Never happens but just in case
+    }
 
     return(
         <div className="App">
@@ -49,7 +32,7 @@ const App = () =>{
                         />
                         <Route
                             path="/home"
-                            element={<Home role={role} />}
+                            element={<Home />}
                         />
                         <Route
                             path="/inventory-display"
@@ -74,10 +57,6 @@ const App = () =>{
                         <Route
                             path="/verify-code/:userId"
                             element={<VerifyCode />}
-                        />
-                        <Route
-                            path="/admin"
-                            element={role === 'admin' ? <Home /> : <Navigate to="/home" />}
                         />
                         <Route
                             path="/manage-inventory"

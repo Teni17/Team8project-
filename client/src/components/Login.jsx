@@ -22,7 +22,7 @@ const Login = () => {
                 if (role === 'admin') {
                     navigate(`/verify-code/${userId}`);
                 } else {
-                    navigate('/dashboard');
+                    navigate('/home');
                 }
             }
         } catch (error) {

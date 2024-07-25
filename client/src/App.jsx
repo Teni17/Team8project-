@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 // pages and components
 import Home from './pages/Home'
 import InventoryDisplay from './pages/InventoryDisplay';
-import GenerateReport from './pages/GenerateReport'
-import Donation from './components/Donations.jsx'
+import GenerateReport from './pages/GenerateReport';
+import Donation from './components/Donations.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import VerifyCode from './components/VerifyCode.jsx';
-import Display from './pages/Display.jsx'
+import Display from './pages/Display.jsx';
+import ManageInventory from './pages/ManageInventory.jsx';
 
 const decodeToken = (token) => {
     try {
@@ -48,7 +49,7 @@ const App = () =>{
                         />
                         <Route
                             path="/home"
-                            element={<Home />}
+                            element={<Home role={role} />}
                         />
                         <Route
                             path="/inventory-display"
@@ -60,11 +61,28 @@ const App = () =>{
                         />
                         <Route 
                             path="/DonationForm" 
-                            element={<Donation />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/verify-code/:userId" element={<VerifyCode />} />
-                        <Route path="/admin" element={role === 'admin' ? <Home /> : <Navigate to="/home" />} />
+                            element={<Donation />}
+                        />
+                        <Route
+                            path="/login"
+                            element={<Login />}
+                        />
+                        <Route
+                            path="/register"
+                            element={<Register />}
+                        />
+                        <Route
+                            path="/verify-code/:userId"
+                            element={<VerifyCode />}
+                        />
+                        <Route
+                            path="/admin"
+                            element={role === 'admin' ? <Home /> : <Navigate to="/home" />}
+                        />
+                        <Route
+                            path="/manage-inventory"
+                            element={<ManageInventory />}
+                        />
                     </Routes>
                 </div>
             </BrowserRouter>

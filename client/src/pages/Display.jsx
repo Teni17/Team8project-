@@ -17,7 +17,7 @@ const Display = () => {
     return (
         <div className="home">
             <h4>Welcome</h4>
-            <button onClick={(handleLoginClick)}>Login</button>
+            <button onClick={handleLoginClick}>Login</button>
             <button onClick={handleRegisterClick}>Sign Up</button>
         </div>
     );

@@ -19,11 +19,7 @@ const VerifyCode = () => {
             if (response.status === 200) {
                 const { token, result } = response.data;
                 localStorage.setItem('token', token);
-                if (result.role === 'admin') {
-                    navigate('/admin');
-                } else {
-                    navigate('/dashboard');
-                }
+                navigate('/home');
             }
         } catch (error) {
             setMessage(error.response?.data?.message || 'Failed to verify code');

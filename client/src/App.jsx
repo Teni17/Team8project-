@@ -12,6 +12,7 @@ import Register from './components/Register.jsx';
 import VerifyCode from './components/VerifyCode.jsx';
 import Display from './pages/Display.jsx';
 import ManageInventory from './pages/ManageInventory.jsx';
+import EditDonation from './pages/EditDonation.jsx'
 
 
 const App = () =>{
@@ -61,6 +62,10 @@ const App = () =>{
                         <Route
                             path="/manage-inventory"
                             element={<ManageInventory />}
+                        />
+                        <Route 
+                            path="/edit-donation/:id"
+                            element={<EditDonation />}
                         />
                     </Routes>
                 </div>

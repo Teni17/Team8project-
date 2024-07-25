@@ -1,5 +1,5 @@
 import express from "express"
-import { createDonation, getDonations, deleteDonation, updateDonation } from "../controllers/Donationcontroller.js"
+import { createDonation, getDonations, getDonation, deleteDonation, updateDonation } from "../controllers/Donationcontroller.js"
 
 // create empty router
 const router = express.Router()
@@ -8,7 +8,10 @@ const router = express.Router()
 router.post("/", createDonation)
 
 // GET all Donations
-router.get("/",getDonations)
+router.get("/", getDonations)
+
+// GET a Donation
+router.get("/:id", getDonation)
 
 // DELETE a Donation
 router.delete("/:id", deleteDonation)

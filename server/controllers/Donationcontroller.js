@@ -10,6 +10,27 @@ export const getDonations = async(req, res) => {
     res.status(200).json(donations)
 }
 
+// get one Donation
+export const getDonation = async(req, res) => {
+    // get Donation id
+    const { id } = req.params
+
+    // check valid id type
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such Donation'})
+    }
+
+    // get Donation
+    const donation = await Donation.findById(id)
+
+    // check valid Donation
+    if(!donation){
+        return res.status(400).json({error: "No such Donation"})
+    }
+
+    // send response containing Donation
+    res.status(200).json(donation)
+}
 
 // create a new Donation
 export const createDonation = async(req, res) =>{

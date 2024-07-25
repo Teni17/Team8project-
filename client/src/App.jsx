@@ -18,9 +18,6 @@ import EditDonation from './pages/EditDonation.jsx'
 const App = () =>{
     const { role } = useContext(UserContext); // role of the currently logged in user is always known with context
     
-    if (role === null) {
-        return <div>Loading...</div>; // Never happens but just in case
-    }
 
     return(
         <div className="App">

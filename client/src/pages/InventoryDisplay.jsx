@@ -38,7 +38,7 @@ const InventoryDisplay = () => {
     const filterNames = e =>{
         const searchValue = e.target.value.toLowerCase()
         setSearch(searchValue)
-        const filtered = donations.filter(donation => donation.name.toLowerCase().includes(searchValue))
+        const filtered = donations.filter(donation => donation.donor.toLowerCase().includes(searchValue))
         setFilteredDonations(filtered)
     }
   

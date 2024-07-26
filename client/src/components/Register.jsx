@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import image from "/Users/adamelmobdy/Desktop/eight.png"
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -29,31 +29,46 @@ const Register = () => {
     return (
 
           <div className='Register'>
-                   
                 <form className="items" onSubmit={handleSubmit}>
-                <h1> Register</h1>
+                <img src={image}></img>
+                
+                <div className='title'>
+                
+                <h1> Welcome! </h1>
+                    
+                    </div>
+                    <div className='itemone'>
                     <input
                         type="text"
                         placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
-         
+                    </div>
+               
+                    <div className='item3'>
                     <input
                         type="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-
+                    </div>
+                    
+                    <div className='item4'>
                     <input
                         type="email"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                        <div className='Pick'>
+
+                    </div>
+                 
+                        <div className='Role'>
                         <label> Role </label>
+                        </div>
+                        <div className='Choice'>
                         <select
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
@@ -61,7 +76,8 @@ const Register = () => {
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                         </select>
-                        </div> 
+
+                        </div>
                     <button type="submit">
                         Register
                     </button>

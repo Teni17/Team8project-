@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import image from "/Users/adamelmobdy/Desktop/eight.png"
+import image from "../imgs/eight.png"
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

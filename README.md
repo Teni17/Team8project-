@@ -163,6 +163,8 @@ Sprint 2 video: https://youtu.be/SSYL9LWAKTI
   
 - Sprint 3 Report (06/29/2024 - 07/26/2024):
 
+  Sprint 3 video: https://www.youtube.com/watch?v=l3PnQ379RMo
+
 License:
 [LICENSE.txt](https://github.com/Teni17/Team8project-/files/15476089/LICENSE.txt)
 

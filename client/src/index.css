@@ -479,9 +479,8 @@ body {
 }
 
 .inventory-item {
-  display: gird;
   justify-content: space-between;
-  align-items: center;
+  justify-items: center;
   padding: 15px;
   margin-bottom: 10px;
   background-color: #fff;

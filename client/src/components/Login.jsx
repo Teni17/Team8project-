@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext'
-import image from "/Users/adamelmobdy/Desktop/eight.png"
+import image from "../imgs/eight.png"
 
 const Login = () => {
     const [username, setUsername] = useState('');

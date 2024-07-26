@@ -14,7 +14,7 @@
 }
 .home h4 {
   align-self: flex-start;
-  color: #555454;
+  color: #000000;
   margin: 0;
   padding: 30px;
   position: absolute;
@@ -23,7 +23,7 @@
   font-size: 40px;
 }
 .home button {
-  background-color: #007bff;
+  background-color: #ef0c0c;
   color: white;
   border: none;
   padding: 20px 40px;
@@ -35,7 +35,7 @@
   transition: background-color 0.3s ease;
 }
 .home button:hover {
-  background-color: #0056b3;
+  background-color: #ef0c0c;
 }
 .home .button-container {
   display: flex;
@@ -59,12 +59,12 @@
 .inventory-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: #007bff;
+  color: #ef0c0c;
 }
 .inventory-details p {
   margin: 0;
   font-size: 0.9em;
-  color: #555;
+  color: #000000;
 }
 
 /* Inventory Display */
@@ -85,7 +85,7 @@
   font-size: 40px;
 }
 .inventory-display .header button {
-  background-color: #007bff;
+  background-color: #ef0c0c;
   color: white;
   border: none;
   padding: 20px 40px;
@@ -95,7 +95,7 @@
   transition: background-color 0.3s ease;
 }
 .inventory-display .header button:hover {
-  background-color: #0056b3;
+  background-color: #ef0c0c;
 }
 .inventory-display .inventory-container {
   background-color: #f2f2f2;
@@ -132,11 +132,11 @@
 }
 .generate-report .header h2 {
   margin: 0;
-  color: #555454;
+  color: #000000;
   font-size: 40px;
 }
 .generate-report .header button {
-  background-color: #007bff;
+  background-color: #ef0c0c;
   color: white;
   border: none;
   padding: 20px 40px;
@@ -146,7 +146,7 @@
   transition: background-color 0.3s ease;
 }
 .generate-report .header button:hover {
-  background-color: #0056b3;
+  background-color: #ef0c0c;
 }
 .generate-report .content {
   display: flex;
@@ -156,11 +156,11 @@
 }
 .generate-report .content p {
   font-size: 18px;
-  color: #555454;
+  color: #000000;
   margin-bottom: 20px;
 }
 .generate-report .download-link {
-  background-color: #007bff;
+  background-color: #ef0c0c;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -171,13 +171,13 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .generate-report .download-link:hover {
-  background-color: #0056b3;
+  background-color: #ef0c0c;
   color: #e0e0e0;
 }
 
 
 .Buttons button {
-  background-color: #007bff;
+  background-color: #ef0c0c;
   color: white;
   border: none;
   padding: 20px 40px;
@@ -200,7 +200,7 @@
   align-items: center;
   width: 100%;
   padding: 20px; 
-  background-color: #007bff; 
+  background-color: #ef0c0c; 
   border-bottom: 1px solid #ddd; 
 }
 
@@ -252,8 +252,8 @@
 .Content input:focus,
 .Content select:focus {
   outline: none;
-  border-color: #007bff; 
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  border-color: #ef0c0c; 
+  box-shadow: 0 0 5px rgb(216, 41, 41); 
 }
 
 .display {

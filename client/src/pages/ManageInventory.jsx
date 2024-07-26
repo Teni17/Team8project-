@@ -47,8 +47,9 @@ const ManageInventory = () => {
         <div className="manage-inventory">
             <div className="header">
                 <h2>Manage Inventory</h2>
-                <button onClick={() => navigate('/home')}>Home</button>
             </div>
+                <button className='Home-Button' onClick={() => navigate('/home')}>Home</button>
+            
             <div className="inventory-list">
                 {donations.map((donation) => (
                     <div key={donation._id} className="inventory-item">

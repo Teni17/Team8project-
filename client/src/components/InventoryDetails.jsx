@@ -11,6 +11,7 @@ const InventoryDetails = ({ donation }) => {
         <div className="inventory-details">
             <h4>{donationName}</h4>
             <p><strong>Donor: </strong>{donation.donor}</p>
+            <p><strong>Item: </strong>{donation.name}</p>
             <p><strong>Category: </strong>{donation.category}</p>
             <p><strong>Quantity: </strong>{donation.quantity}</p>
             <p><strong>Expires: </strong>{expirationDate.toLocaleDateString('en-US', { // format Date object

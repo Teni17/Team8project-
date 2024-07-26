@@ -41,6 +41,14 @@ const InventoryDisplay = () => {
         const filtered = donations.filter(donation => donation.donor.toLowerCase().includes(searchValue))
         setFilteredDonations(filtered)
     }
+    const handleFilterChange = (filter) => {
+        if (filter === 'All') {
+          setFilteredDonations(donations);
+        } else {
+          filterDonations(filter);
+        }
+      };
+      
   
 
     return (
@@ -48,10 +56,19 @@ const InventoryDisplay = () => {
             <div className="header">
                 <h2>Inventory</h2>
                 <button onClick={handleHomeClick}>Home</button>
-                <button onClick={() => filterDonations('Food')}>Filter Food</button>
-                <button onClick={() => filterDonations('Hygiene')}>Filter Hygiene</button>
-                <button onClick={() => filterDonations('Miscellaneous')}>Filter Miscellaneous</button>
-                <button onClick={() => setFilteredDonations(donations)}>All</button>
+                <div className="filter-container">
+                <label>Filter: </label>
+                <select onChange={(e) => handleFilterChange(e.target.value)}>
+                <option value="">Select a filter</option>
+                <option value="Food">Food</option>
+                <option value="Hygiene">Hygiene</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+                <option value="All">All</option>
+                </select>
+                </div>
+
+
+                
             </div>
             <div className="inventory-container">
             <input type='text' placeholder='Search by Name' value={search} onChange={filterNames} />

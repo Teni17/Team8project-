@@ -163,7 +163,65 @@ Sprint 2 video: https://youtu.be/SSYL9LWAKTI
   
 - Sprint 3 Report (06/29/2024 - 07/26/2024):
 
-  Sprint 3 video: https://www.youtube.com/watch?v=l3PnQ379RMo
+What's New (User Facing)
+
+We added admin user features that allow an admin to edit/delete donations. We also added new css
+
+Work Summary (Developer Facing)
+
+Adding admin features which allows edit/delete compatibility which we alread had backend apis set up for. So we just did front end development for, we also added new css to create a better user expirence. We fixed all bugs and issues with the login/register pages and everything currently works perfectly.
+
+Unfinished Work
+
+No unFinished work.
+
+Completed Issues/User Stories
+
+Here are links to the issues that we completed in this sprint:
+
+-#34
+-#33
+-#32
+-#31
+-#30
+-#29
+-#28
+-#27
+-#26
+-#25
+-#24
+
+Incomplete Issues/User Stories
+
+None
+
+Code Files for Review
+
+Please review the following code files, which were actively developed during this sprint, for quality:
+
+-https://github.com/Teni17/Team8project-/blob/main/client/src/components/Login.jsx
+-https://github.com/Teni17/Team8project-/blob/main/client/src/components/Register.jsx
+-https://github.com/Teni17/Team8project-/blob/main/client/src/contexts/UserContext.jsx
+-https://github.com/Teni17/Team8project-/blob/main/client/src/pages/Display.jsx
+-https://github.com/Teni17/Team8project-/blob/main/client/src/pages/EditDonation.jsx
+-https://github.com/Teni17/Team8project-/blob/main/client/src/pages/Home.jsx
+-https://github.com/Teni17/Team8project-/blob/main/client/src/pages/ManageInventory.jsx
+-https://github.com/Teni17/Team8project-/tree/main/server/models
+
+Retrospective Summary
+
+Here's what went well:
+
+-We added all features we wanted to
+-We worked well as a team
+-We are proud of our work
+
+Here's what we'd like to improve:
+
+-Nothing
+
+
+Sprint 3 video: https://www.youtube.com/watch?v=l3PnQ379RMo
 
 License:
 [LICENSE.txt](https://github.com/Teni17/Team8project-/files/15476089/LICENSE.txt)
